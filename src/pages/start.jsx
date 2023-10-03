@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, sendUser } from "../redux/answerSlice";
 
 
 const Container = styled.div`
@@ -91,40 +93,55 @@ cursor: pointer;
 `;
 
 const Start = () => {
-    const user = ["thaiha", "12345678"]
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useSelector((state) => state.location)
 
+    useEffect(() => {
+
+        console.log(location)
+        if (location) navigate(`/question1`)
+    }, [location])
     const handleClick = () => {
-        if (username === user[0] && password === user[1]) {
-            navigate(`/question1`)// simulate a delay
-            console.log("login")
-        } else {
-            setError(true);
-        }
+        fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }
+            )
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                dispatch(addLocation(data.location));
+                if (data.location) window.location.assign(`/question1`)
+                else setError(true)
+                console.log(data)
+            });
     }
 
     const onChangeUsername = useCallback(
         (e) => {
             setUsername(e.target.value);
-        },
-        [username]
-    );
+        }, [username])
 
     const onChangePassword = useCallback(
         (e) => {
             setPassword(e.target.value);
-        },
-        [password]
-    );
+        }, [password])
 
     return (
         <Container>
             <Wrapper>
                 <Login>
-                    <Logo src={ImgLogo}/>
+                    <Logo src={ImgLogo} />
                     <Form>
                         <Input
                             placeholder="username"
@@ -135,7 +152,7 @@ const Start = () => {
                             type="password"
                             onChange={onChangePassword}
                         />
-                        <Button onClick={() => handleClick()} >
+                        <Button type="submit" onClick={() => handleClick()} >
                             LOGIN
                         </Button>
                         {error && <Error>Username or Password is wrong</Error>}

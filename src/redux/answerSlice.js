@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
 
 export const fetchAnswer = createAsyncThunk(
     "create/sendAnswer",
@@ -10,7 +11,6 @@ export const fetchAnswer = createAsyncThunk(
   )
 
 export const sendAnswer = createAsyncThunk("create/sendAnswer", async (data) => {
-  console.log(data)  
   return fetch("http://localhost:3000/questions/create", {
         method: "POST",
         headers: {
@@ -22,6 +22,7 @@ export const sendAnswer = createAsyncThunk("create/sendAnswer", async (data) => 
     .then((res) => res.json())
     .then((json) => console.log(json));
 })
+
 
 export const answerSlice = createSlice({
     name: "answer",
