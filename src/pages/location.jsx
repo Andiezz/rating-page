@@ -98,10 +98,10 @@ const Location = () => {
                         <Button onClick={() => handleClick("Thái Hà")}>
                             Thái Hà
                         </Button>
-                        <Button>
+                        <Button onClick={() => handleClick("Chùa Bộc")}>
                             Chùa Bộc
                         </Button>
-                        <Button>
+                        <Button onClick={() => handleClick("Đặng Văn Ngữ")}>
                             Đặng Văn Ngữ
                         </Button>
                 </Content>

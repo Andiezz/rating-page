@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styled, { keyframes } from "styled-components";
-import { bounce, fadeIn, fadeInRight, fadeInRightBig, flash, flip, hinge, pulse, slideInRight } from "react-animations";
-import ImgSrc from '.././bg_tiin.png';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import styled from "styled-components";
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAnswer, fetchAnswer, sendAnswer } from '../redux/answerSlice';
+import { sendAnswer } from '../redux/answerSlice';
+import { px2vw } from '../responsive';
 
 const Rating = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin: ${px2vw(40)};
 `;
 
 const Content = styled.div`
@@ -20,132 +20,79 @@ const Content = styled.div`
 `;
 
 const Angry = styled(FontAwesomeIcon)`
-position: absolute;
+font-size: ${px2vw(100)};
+margin: ${px2vw(20)};
+background-color: #FF7D7D;
 border-radius: 50%;
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-background-color: #FFFFFF;
+border: 0;
+color: #f52d2d;
 cursor: pointer;
 &:hover{
-    color: #FF7D7D
+    font-size: ${px2vw(140)};
+    margin: 0px;
 }
-&:active{
-    border: 0;
-    color: transparent;
-    background-color: transparent;
-}
-`;
-
-const AngryAnimation = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #FF7D7D;
-cursor: pointer;
 `;
 
 const Frown = styled(FontAwesomeIcon)`
-position: absolute;
+font-size: ${px2vw(100)};
+margin: ${px2vw(20)};
+background-color: #ffa068;
 border-radius: 50%;
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-background-color: #FFFFFF;
+border: 0;
+color: #ff6e1a;
 cursor: pointer;
 &:hover{
-    color: #FF9153
+    font-size: ${px2vw(140)};
+    margin: 0px;
 }
-&:active{
-    border: 0;
-    color: transparent;
-    background-color: transparent;
-}
-`;
-
-const FrownAnimation = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #FF9153;
-cursor: pointer;
 `;
 
 const Meh = styled(FontAwesomeIcon)`
-position: absolute;
+font-size: ${px2vw(100)};
+margin: ${px2vw(20)};
+color: #ffbe1b;
+background-color: #ffda7c;
 border-radius: 50%;
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-background-color: #FFFFFF;
+border: 0;
 cursor: pointer;
 &:hover{
-    color: #FFD874
+    font-size: ${px2vw(140)};
+    margin: 0px;
 }
-&:active{
-    border: 0;
-    color: transparent;
-    background-color: transparent;
-}
-`;
-
-const MehAnimation = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #FFD874;
-cursor: pointer;
 `;
 
 const Grin = styled(FontAwesomeIcon)`
-position: absolute;
+font-size: ${px2vw(100)};
+margin: ${px2vw(20)};
+background-color: #c0ff90;
 border-radius: 50%;
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-background-color: #FFFFFF;
+border: 0;
+color: #7dff19;
 cursor: pointer;
 &:hover{
-    color: #A2E56D
+    font-size: ${px2vw(140)};
+    margin: 0px;
 }
-&:active{
-    border: 0;
-    color: transparent;
-    background-color: transparent;
-}
-`;
-
-const GrinAnimation = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #A2E56D;
-cursor: pointer;
 `;
 
 const Laugh = styled(FontAwesomeIcon)`
-position: absolute;
+font-size: ${px2vw(100)};
+margin: ${px2vw(20)};
+background-color: #23ff48;
 border-radius: 50%;
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-background-color: #FFFFFF;
+border: 0;
+color: #06b723;
 cursor: pointer;
-&:hover{
-    color: #2C9D3E
+&:hover {
+    font-size: ${px2vw(140)};
+    margin: 0px;
 }
-&:active{
-    border: 0;
-    color: transparent;
-    background-color: transparent;
-}
-`;
-
-const LaughAnimation = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #2C9D3E;
-cursor: pointer;
 `;
 const Label = styled.p`
-font-size: 16px;
+font-size: ${px2vw(16)};
 text-align: center;
+font-family: 'SF Pro Display', sans-serif;
+                                                
 `;
 
 const Face = styled.div`
@@ -222,35 +169,30 @@ const Emoji = (props) => {
                 <Content>
                     <Link onClick={() => { handleClick(1) }} style={{ textDecoration: 'none', color: 'black' }} >
                         <Angry icon="fa-regular fa-face-angry" />
-                        <AngryAnimation icon="fa-solid fa-face-angry" />
                         <Label> TỆ</Label>
                     </Link>
                 </Content>
                 <Content>
                     <Link onClick={() => handleClick(2)} style={{ textDecoration: 'none', color: 'black' }} >
                         <Frown icon="fa-regular fa-face-frown" />
-                        <FrownAnimation icon="fa-solid fa-face-frown" />
                         <Label>KHÔNG HÀI LÒNG</Label>
                     </Link>
                 </Content>
                 <Content>
                     <Link onClick={() => handleClick(3)} style={{ textDecoration: 'none', color: 'black' }} >
                         <Meh icon="fa-regular fa-face-meh" />
-                        <MehAnimation icon="fa-solid fa-face-meh" />
                         <Label>BÌNH THƯỜNG</Label>
                     </Link>
                 </Content>
                 <Content>
                     <Link onClick={() => handleClick(4)} style={{ textDecoration: 'none', color: 'black' }} >
                         <Grin icon="fa-regular fa-face-grin-wide" />
-                        <GrinAnimation icon="fa-solid fa-face-grin-wide" />
                         <Label>HÀI LÒNG</Label>
                     </Link>
                 </Content>
                 <Content>
                     <Link onClick={() => handleClick(5)} style={{ textDecoration: 'none', color: 'black' }} >
                         <Laugh icon="fa-regular fa-face-laugh-beam" />
-                        <LaughAnimation icon="fa-solid fa-face-laugh-beam" />
                         <Label>TUYỆT VỜI</Label>
                     </Link>
                 </Content>

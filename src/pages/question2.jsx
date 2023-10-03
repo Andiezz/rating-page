@@ -1,11 +1,9 @@
 import React from 'react'
 import styled, { keyframes } from "styled-components";
-import { bounce, fadeIn, fadeInRight, fadeInRightBig, flash, flip, hinge, pulse, slideInRight } from "react-animations";
+import { fadeIn } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaceAngry } from '@fortawesome/free-solid-svg-icons'
 import Emoji from '../components/emoji';
+import { px2vw } from '../responsive';
 const containAnimation = keyframes`${fadeIn}`;
 
 const Container = styled.div`
@@ -16,7 +14,7 @@ const Container = styled.div`
     height: 100vh;
     background-image: url(${ImgSrc});
     background-size: cover;
-    animation: 2s ${containAnimation};
+    /* animation: 2s ${containAnimation}; */
 `;
 
 const Wrapper = styled.div`
@@ -29,59 +27,9 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.a`
-    font-size: 40px;
+    font-size: ${px2vw(40)};
     word-wrap: break-word;
-`;
-
-const Rating = styled.div`
-    display: flex;
-`;
-
-const Angry = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-&:hover{
-    color: #FF7D7D
-}
-`;
-
-const Frown = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-&:hover{
-    color: #FF9153
-}
-`;
-
-const Meh = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-&:hover{
-    color: #FFD874
-}
-`;
-
-const Grin = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-&:hover{
-    color: #A2E56D
-}
-`;
-
-const Laugh = styled(FontAwesomeIcon)`
-font-size: 100px;
-margin: 20px;
-color: #a7a6a6;
-&:hover{
-    color: #2C9D3E
-}
-`;
-const Label = styled.p`
+    font-family: 'playfair display', sans-serif;
 `;
 
 const Question2 = () => {

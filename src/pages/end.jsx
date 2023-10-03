@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { slideInUp } from "react-animations";
-import { mobile } from "../responsive";
+import { px2vw } from "../responsive";
 import { fadeIn } from "react-animations";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
+import ImgLogo from '.././logo_tiin2.png';
 import { useEffect } from "react";
 
 
@@ -26,16 +26,15 @@ align-items: center;
 flex-direction: column;
 `;
 
-const Logo = styled.div`
- display: flex;
- justify-content: center;
- align-items: center;
- font-size: 20px;
- margin-top: 30px;
- margin-bottom: 200px;
+const Logo = styled.img`
+height: ${px2vw(45)};
+width: ${px2vw(60)};
+margin-top: ${px2vw(40)};
+margin-bottom: ${px2vw(100)};
 `;
 
 const Content = styled.div`
+flex: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,32 +42,33 @@ const Content = styled.div`
 `
 const Top = styled.p`
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 80px;
+    font-size: ${px2vw(80)};
     margin: 0;
 `
 
 const Bot = styled.p`
-    font-size: 20px;
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: ${px2vw(20)};
+    margin: 0;
+    font-style: italic;
 `
 const End = () => {
     const navigate = useNavigate();
     useEffect(() => {
         setTimeout(() => {
-            navigate(`/`)
+            navigate(`/question1`)
         }, 2000);
-      }, []);
+    }, []);
     return (
         <Container>
             <Wrapper>
-                <Logo>
-                    Tiin
-                </Logo>
+                <Logo src={ImgLogo} />
                 <Content>
                     <Top>
                         Cảm ơn bạn!
                     </Top>
                     <Bot>
-                        VÌ ĐÃ LỰA CHỌN TIIN STORE 
+                        VÌ ĐÃ LỰA CHỌN TIIN STORE
                     </Bot>
                 </Content>
             </Wrapper>

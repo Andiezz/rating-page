@@ -7,3 +7,5 @@ export const mobile = (props) => {
     }
   `;
 };
+
+export const px2vw = (size, width = 1440) => `${(size / width) * 150}vw`;

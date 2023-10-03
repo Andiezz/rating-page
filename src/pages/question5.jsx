@@ -4,7 +4,8 @@ import { fadeIn, } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
 import { Link, useNavigate, } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAnswer, sendAnswer } from '../redux/answerSlice';
+import { sendAnswer } from '../redux/answerSlice';
+import { px2vw } from '../responsive';
 
 const containAnimation = keyframes`${fadeIn}`;
 const Container = styled.div`
@@ -15,7 +16,7 @@ const Container = styled.div`
     height: 100vh;
     background-image: url(${ImgSrc});
     background-size: cover;
-    animation: 2s ${containAnimation};
+    /* animation: 2s ${containAnimation}; */
 `;
 
 const Wrapper = styled.div`
@@ -28,8 +29,9 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.a`
-    font-size: 40px;
+    font-size: ${px2vw(40)};
     word-wrap: break-word;
+    font-family: 'playfair display', sans-serif;
 `;
 const Label = styled.div`
     display: flex;
@@ -41,16 +43,16 @@ const Answer1 = styled.button`
     align-items: center;
     justify-content: center;
     background: transparent;
-    height: 65px;
-    width: 65px;
-    margin: 10px;
+    height: ${px2vw(65)};
+    width: ${px2vw(65)};
+    margin: ${px2vw(40)} ${px2vw(10)};
     border: 1px solid black;
     border-radius: 50%;
     cursor: pointer;
 
     font-family: 'SF Pro Display';
     font-weight: 400;
-    font-size: 31.2058px;
+    font-size: ${px2vw(32)};
     color: #212121;
 
     &:active {
@@ -66,32 +68,36 @@ const Level = styled.div`
 `;
 
 const LevelTitle = styled.div`
-
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: 'SF Pro Display', sans-serif;
+font-size: ${px2vw(20)};
 `
 const LevelLine = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60%;
-    margin: 0 10px;
-    transform: translateY(2px);
+    margin: 0 ${px2vw(10)};
+    transform: translateY(${px2vw(2)});
 `;
 
 const Line = styled.hr`
-    height: 1px;
+    height: ${px2vw(1)};
     width: 100%;
     border: 0;
     background: black;
+    transform: translateY(${px2vw(-0.5)});
 `;
 const Dot = styled.hr`
-    height: 5px;
-    width: 5px;
+    height: ${px2vw(5)};
+    width: ${px2vw(5)};
     background: black;
     border: 0;
     transform: rotate(45deg);
 `;
 
-const Button = styled.button``;
 const Question5 = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
