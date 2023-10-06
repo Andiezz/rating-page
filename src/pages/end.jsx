@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, removeAnswer } from "../redux/answerSlice";
 
 
 const containAnimation = keyframes`${fadeIn}`;
@@ -53,9 +55,11 @@ const Bot = styled.p`
     font-style: italic;
 `
 const End = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
         setTimeout(() => {
+            dispatch(removeAnswer());
             navigate(`/question1`)
         }, 2000);
     }, []);

@@ -4,6 +4,7 @@ import { fadeIn } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
 import Emoji from '../components/emoji';
 import { px2vw } from '../responsive';
+import { useSelector } from 'react-redux';
 const containAnimation = keyframes`${fadeIn}`;
 
 const Container = styled.div`
@@ -22,7 +23,8 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
+    height: 100%;
     text-align: center;
 `;
 
@@ -33,13 +35,14 @@ const Title = styled.a`
 `;
 
 const Question1 = () => {
+    const location = useSelector((state) => state.answer.location);
     return (
         <Container>
             <Wrapper>
                 <Title>
                     Bạn vui lòng đánh giá mức độ hài lòng của mình về sự hỗ trợ của các bạn tư vấn bán hàng:
                 </Title>
-                <Emoji index = {2}/>
+                <Emoji index = {2} location ={location}/>
             </Wrapper>
         </Container>
     )

@@ -76,6 +76,7 @@ const Title = styled.a`
 const Location = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
+    const [locations, setLocations] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
@@ -83,10 +84,23 @@ const Location = () => {
         }
     }, [loading]);
 
+    useEffect(() =>{
+        fetch("http://localhost:3000/questions/locations", {
+            method: "GET",
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setLocations(data.locations);
+            });
+    },[]);
+
     const handleClick = (location) => {
         dispatch(addLocation(location))
         setLoading(true);
-    
+        console.log(location)
 }
     return (
         <Container>
@@ -95,15 +109,12 @@ const Location = () => {
                     Bạn vui lòng chọn cơ sở đã trải nghiệm:
                 </Title>
                 <Content>
-                        <Button onClick={() => handleClick("Thái Hà")}>
-                            Thái Hà
-                        </Button>
-                        <Button onClick={() => handleClick("Chùa Bộc")}>
-                            Chùa Bộc
-                        </Button>
-                        <Button onClick={() => handleClick("Đặng Văn Ngữ")}>
-                            Đặng Văn Ngữ
-                        </Button>
+                        {locations.map((location) => {
+                            return(
+                            <Button onClick={() => handleClick(location)} key={location}>
+                                {location}
+                            </Button>
+                        )})}
                 </Content>
             </Wrapper>
         </Container>

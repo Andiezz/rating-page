@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendAnswer } from '../redux/answerSlice';
+import { addAnswer, sendAnswer } from '../redux/answerSlice';
 import { px2vw } from '../responsive';
 
 const Rating = styled.div`
@@ -140,7 +140,7 @@ const Emoji = (props) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const location = useSelector((state) => state.answer.location);
+    
     useEffect(() => {
         if (loading) {
             navigate(`/question${props.index}`)// simulate a delay
@@ -149,18 +149,14 @@ const Emoji = (props) => {
 
     const time = new Date().toLocaleString()
     const handleClick = (score) => {
-
-            dispatch(sendAnswer({
-                questions: [{
-                    location: location,
-                    number: props.index - 1,
-                    score: score,
-                    total: 5,
-                    time: time,
-                }]
-            }))
-            setLoading(true);
-        
+        dispatch(addAnswer({
+            location: props.location,
+            number: props.index - 1,
+            score: score,
+            total: 5,
+            time: time,
+        }))
+        setLoading(true);
     }
 
     return (

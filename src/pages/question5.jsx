@@ -4,7 +4,7 @@ import { fadeIn, } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
 import { Link, useNavigate, } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendAnswer } from '../redux/answerSlice';
+import { addAnswer, addLocation, sendAnswer } from '../redux/answerSlice';
 import { px2vw } from '../responsive';
 
 const containAnimation = keyframes`${fadeIn}`;
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
     text-align: center;
 `;
 
@@ -104,22 +104,22 @@ const Question5 = () => {
     const time = new Date().toLocaleString()
     const navigate = useNavigate();
     const location = useSelector((state) => state.answer.location);
+    const questions = useSelector((state) => state.answer.questions)
     useEffect(() => {
         if (loading) {
+            dispatch(sendAnswer(questions))
             navigate(`/end`)// simulate a delay
         }
     }, [loading]);
 
     const handleClick = (score) => {
 
-        dispatch(sendAnswer({
-            questions: [{
+        dispatch(addAnswer({
                 location: location,
                 number: 5,
                 score: score,
                 total: 10,
                 time: time,
-            }]
         }))
         setLoading(true);
     

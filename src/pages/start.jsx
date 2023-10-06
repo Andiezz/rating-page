@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation, sendUser } from "../redux/answerSlice";
+import { addLocation, sendUser, login } from "../redux/answerSlice";
+import { hover } from "@testing-library/user-event/dist/hover";
+import { userLogin } from "../redux/authSlice";
 
 
 const Container = styled.div`
@@ -35,11 +37,11 @@ margin: 30px;
 margin-bottom: 50px;
 `;
 
-const Login = styled.div`
+const LoginBox = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-height: 25rem;
+height: 28rem;
 width: 20rem;
 border-radius: 20px;
 border: 1px solid gray;
@@ -72,8 +74,8 @@ const Error = styled.span`
   color: red;
 `;
 
-const Button = styled.button`
-margin-top: 50px;
+const Button = styled.div`
+margin-top: 30px;
 box-sizing: border-box;
 border: 1.16446px solid #212121;
 border-radius: 85.0059px;
@@ -92,25 +94,33 @@ cursor: pointer;
 }
 `;
 
+const Text = styled.div`
+padding: 10px;
+font-size: 20px;
+color: gray;
+font-family: 'Inter';
+`;
 const Start = () => {
+    const success = useSelector((state) => state.auth.success)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location = useSelector((state) => state.location)
+    const location = useSelector((state) => state.answer.location)
+
 
     useEffect(() => {
-
         console.log(location)
-        if (location) navigate(`/question1`)
+        if(location) navigate("/question1")
     }, [location])
     const handleClick = () => {
         fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
                 username: username,
@@ -121,11 +131,11 @@ const Start = () => {
             .then((res) => res.json())
             .then((data) => {
                 dispatch(addLocation(data.location));
-                if (data.location) window.location.assign(`/question1`)
-                else setError(true)
+                if(!data.location) setError(true)
                 console.log(data)
             });
     }
+
 
     const onChangeUsername = useCallback(
         (e) => {
@@ -140,7 +150,7 @@ const Start = () => {
     return (
         <Container>
             <Wrapper>
-                <Login>
+                <LoginBox>
                     <Logo src={ImgLogo} />
                     <Form>
                         <Input
@@ -152,12 +162,18 @@ const Start = () => {
                             type="password"
                             onChange={onChangePassword}
                         />
+                        {error && <Error>Username or Password is wrong</Error>}
                         <Button type="submit" onClick={() => handleClick()} >
                             LOGIN
                         </Button>
-                        {error && <Error>Username or Password is wrong</Error>}
+                        <Text>
+                            OR
+                        </Text>
+                        <Link style={{ fontSize: "20px", color: '#4b4b4b', fontFamily: 'Inter' }} to={"/location"}>
+                            Continue as guest
+                        </Link>
                     </Form>
-                </Login>
+                </LoginBox>
 
             </Wrapper>
         </Container>
