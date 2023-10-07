@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const userLogin = createAsyncThunk("auth/login", async (data) => {
-    return fetch("http://localhost:3000/login", {
+    return fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
         method: "POST",
         headers: {
             'Content-type': 'application/json; charset=UTF-8',

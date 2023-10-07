@@ -116,7 +116,7 @@ const Start = () => {
         if(location) navigate("/question1")
     }, [location])
     const handleClick = () => {
-        fetch("http://localhost:3000/login", {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
