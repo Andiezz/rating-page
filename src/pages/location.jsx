@@ -85,7 +85,7 @@ const Location = () => {
     }, [loading]);
 
     useEffect(() =>{
-        fetch("http://localhost:3000/questions/locations", {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/questions/locations`, {
             method: "GET",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',

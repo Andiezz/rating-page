@@ -3,14 +3,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchAnswer = createAsyncThunk(
   "create/sendAnswer",
   async () => {
-    const response = await fetch("http://localhost:3000/questions/create")
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/questions/create`)
     const data = await response.json();
     return data
   }
 )
 
 export const sendAnswer = createAsyncThunk("create/sendAnswer", async (data) => {
-  return fetch("http://localhost:3000/questions/create", {
+  return fetch(`${process.env.REACT_APP_SERVER_URL}/questions/create`, {
     method: "POST",
     headers: {
       'Content-type': 'application/json; charset=UTF-8',

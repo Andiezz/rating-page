@@ -4,7 +4,9 @@ import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation } from "../redux/answerSlice";
+import { addLocation, sendUser, login } from "../redux/answerSlice";
+import { hover } from "@testing-library/user-event/dist/hover";
+import { userLogin } from "../redux/authSlice";
 
 
 const Container = styled.div`
@@ -114,7 +116,7 @@ const Start = () => {
         if(location) navigate("/question1")
     }, [location])
     const handleClick = () => {
-        fetch("http://localhost:3000/login", {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
