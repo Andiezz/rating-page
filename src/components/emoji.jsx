@@ -78,10 +78,10 @@ cursor: pointer;
 const Laugh = styled(FontAwesomeIcon)`
 font-size: ${px2vw(100)};
 margin: ${px2vw(20)};
-background-color: #23ff48;
+background-color: #0ee632;
 border-radius: 50%;
 border: 0;
-color: #06b723;
+color: #00b41e;
 cursor: pointer;
 &:hover {
     font-size: ${px2vw(140)};
@@ -91,8 +91,8 @@ cursor: pointer;
 const Label = styled.p`
 font-size: ${px2vw(16)};
 text-align: center;
-font-family: 'SF Pro Display', sans-serif;
-                                                
+font-family: 'Quicksand', sans-serif;                                               
+font-weight: 500;
 `;
 
 const Face = styled.div`

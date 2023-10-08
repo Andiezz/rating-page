@@ -2,9 +2,12 @@ import React from 'react'
 import styled, { keyframes } from "styled-components";
 import { fadeIn } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
+import ImgLogo from '.././logo_tiin2.png';
 import Emoji from '../components/emoji';
 import { px2vw } from '../responsive';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addLocation } from '../redux/answerSlice';
 const containAnimation = keyframes`${fadeIn}`;
 
 const Container = styled.div`
@@ -18,29 +21,66 @@ const Container = styled.div`
     /* animation: 2s ${containAnimation}; */
 `;
 
+const Button = styled.div`
+    position: absolute;
+    top: ${px2vw(10)};
+    left: ${px2vw(10)};
+    cursor: pointer;
+`;
+
+const Logo = styled.img`
+    height: ${px2vw(30)};
+    width: ${px2vw(45)};
+`;
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 70%;
-    height: 100%;
+    width: 80%;
     text-align: center;
 `;
 
-const Title = styled.a`
-    font-size: ${px2vw(40)};
-    word-wrap: break-word;
-    font-family: 'playfair display', sans-serif;
+const Title = styled.div`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+`;
+
+const Keyword = styled.span`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
 `;
 
 const Question1 = () => {
     const location = useSelector((state) => state.answer.location);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleClick = () =>{
+        dispatch(addLocation(""));
+        navigate("/");
+    }
     return (
         <Container>
+            <Button onClick={handleClick}>
+                <Logo src={ImgLogo} />
+            </Button>
             <Wrapper>
                 <Title>
-                    Bạn vui lòng đánh giá mức độ hài lòng của mình về sự hỗ trợ của các bạn tư vấn bán hàng:
+                    Bạn vui lòng đánh giá mức độ hài lòng của mình 
+                </Title>
+                <Title>
+                về sự hỗ trợ của {' '}
+                    <Keyword>
+                     Các bạn tư vấn bán hàng
+                    </Keyword>
+                    :
                 </Title>
                 <Emoji index = {2} location ={location}/>
             </Wrapper>

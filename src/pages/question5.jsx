@@ -24,15 +24,25 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 70%;
+    width: 80%;
     text-align: center;
 `;
 
-const Title = styled.a`
-    font-size: ${px2vw(40)};
-    word-wrap: break-word;
-    font-family: 'playfair display', sans-serif;
+const Title = styled.div`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
 `;
+
+const Keyword = styled.span`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+`;
+
 const Label = styled.div`
     display: flex;
     justify-content: space-around;
@@ -50,7 +60,7 @@ const Answer1 = styled.button`
     border-radius: 50%;
     cursor: pointer;
 
-    font-family: 'SF Pro Display';
+    font-family: 'Quicksand', sans-serif;
     font-weight: 400;
     font-size: ${px2vw(32)};
     color: #212121;
@@ -71,7 +81,7 @@ const LevelTitle = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-font-family: 'SF Pro Display', sans-serif;
+font-family: 'Quicksand', sans-serif;
 font-size: ${px2vw(20)};
 `
 const LevelLine = styled.div`
@@ -115,22 +125,26 @@ const Question5 = () => {
     const handleClick = (score) => {
 
         dispatch(addAnswer({
-                location: location,
-                number: 5,
-                score: score,
-                total: 10,
-                time: time,
+            location: location,
+            number: 5,
+            score: score,
+            total: 10,
+            time: time,
         }))
         setLoading(true);
-    
-}
+
+    }
 
 
     return (
         <Container>
             <Wrapper>
                 <Title>
-                    Bạn vui lòng đánh giá mức độ hài lòng trên thang điểm từ 1-10?
+                    Bạn vui lòng đánh giá {' '}
+                    <Keyword>
+                        mức độ hài lòng
+                    </Keyword>
+                    {' '} trên thang điểm từ 1-10?
                 </Title>
                 <Label>
                     {[...Array(10)].map((key, index) => {

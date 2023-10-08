@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation, sendUser, login } from "../redux/answerSlice";
-import { hover } from "@testing-library/user-event/dist/hover";
-import { userLogin } from "../redux/authSlice";
+import { addLocation } from "../redux/answerSlice";
 
 
 const Container = styled.div`
@@ -79,7 +77,7 @@ margin-top: 30px;
 box-sizing: border-box;
 border: 1.16446px solid #212121;
 border-radius: 85.0059px;
-font-family: 'Inter';
+font-family: 'Quicksand', sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 16.3025px;
@@ -98,7 +96,7 @@ const Text = styled.div`
 padding: 10px;
 font-size: 20px;
 color: gray;
-font-family: 'Inter';
+font-family: 'Quicksand', sans-serif;
 `;
 const Start = () => {
     const success = useSelector((state) => state.auth.success)
@@ -169,7 +167,7 @@ const Start = () => {
                         <Text>
                             OR
                         </Text>
-                        <Link style={{ fontSize: "20px", color: '#4b4b4b', fontFamily: 'Inter' }} to={"/location"}>
+                        <Link style={{ fontSize: "20px", color: '#4b4b4b', fontFamily: 'Quicksand' }} to={"/location"}>
                             Continue as guest
                         </Link>
                     </Form>

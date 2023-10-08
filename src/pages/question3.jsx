@@ -27,10 +27,19 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
-const Title = styled.a`
-    font-size: ${px2vw(40)};
-    word-wrap: break-word;
-    font-family: 'playfair display', sans-serif;
+const Title = styled.div`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+`;
+
+const Keyword = styled.span`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
 `;
 
 const Question3 = () => {
@@ -39,9 +48,16 @@ const Question3 = () => {
         <Container>
             <Wrapper>
                 <Title>
-                    Bạn vui lòng đánh giá mức độ hài lòng của mình về sự hỗ trợ của các bác/chú bảo vệ:
+                    Bạn vui lòng đánh giá mức độ hài lòng của mình
                 </Title>
-                <Emoji index = {4} location ={location}/>
+                <Title>
+                    về sự hỗ trợ của {' '}
+                    <Keyword>
+                        Các bác/chú bảo vệ
+                    </Keyword>
+                    :
+                </Title>
+                <Emoji index={4} location={location} />
             </Wrapper>
         </Container>
     )

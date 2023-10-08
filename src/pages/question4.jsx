@@ -28,10 +28,19 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
-const Title = styled.a`
-    font-size: ${px2vw(40)};
-    word-wrap: break-word;
-    font-family: 'playfair display', sans-serif;
+const Title = styled.div`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+`;
+
+const Keyword = styled.span`
+    font-size: ${px2vw(30)};
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
 `;
 
 const Question4 = () => {
@@ -40,9 +49,18 @@ const Question4 = () => {
         <Container>
             <Wrapper>
                 <Title>
-                    Bạn vui lòng đánh giá mức độ hài lòng của mình về sản phẩm ( mẫu mã, chất liệu, giá cả ) của Tiin:
+                    Bạn vui lòng đánh giá mức độ hài lòng của mình
                 </Title>
-                <Emoji index = {5} location ={location}/>
+                <Title>
+                    về{' '}
+                    <Keyword>
+                        Sản phẩm ( mẫu mã, chất liệu, giá cả )
+                    </Keyword>
+                </Title>
+                <Title>
+                    của Tiin:
+                </Title>
+                <Emoji index={5} location={location} />
             </Wrapper>
         </Container>
     )
