@@ -5,7 +5,6 @@ import ImgLogo from '.././logo_tiin2.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, sendUser, login } from "../redux/answerSlice";
-import { hover } from "@testing-library/user-event/dist/hover";
 import { userLogin } from "../redux/authSlice";
 
 
