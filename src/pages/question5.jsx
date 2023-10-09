@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import styled, { keyframes } from "styled-components";
 import { fadeIn, } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
+import ImgLogo from '.././logo_tiin2.png';
 import { Link, useNavigate, } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswer, addLocation, sendAnswer } from '../redux/answerSlice';
 import { px2vw } from '../responsive';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const containAnimation = keyframes`${fadeIn}`;
 const Container = styled.div`
@@ -28,15 +30,35 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
-const Title = styled.div`
+const Return = styled(FontAwesomeIcon)`
+    position: absolute;
     font-size: ${px2vw(30)};
+    top: ${px2vw(10)};
+    left: ${px2vw(10)};
+    cursor: pointer;
+`;
+
+const Logo = styled.img`
+position: absolute;
+height: ${px2vw(30)};
+top: ${px2vw(20)};
+`;
+
+const Question = styled.div`
+    font-size: ${px2vw(20)};
+    font-family: 'Quicksand', sans-serif;
+    margin: ${px2vw(20)};
+`;
+
+const Title = styled.div`
+    font-size: ${px2vw(25)};
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
 `;
 
 const Keyword = styled.span`
-    font-size: ${px2vw(30)};
+    font-size: ${px2vw(25)};
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
@@ -82,7 +104,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 font-family: 'Quicksand', sans-serif;
-font-size: ${px2vw(20)};
+font-size: ${px2vw(15)};
 `
 const LevelLine = styled.div`
     display: flex;
@@ -98,7 +120,7 @@ const Line = styled.hr`
     width: 100%;
     border: 0;
     background: black;
-    transform: translateY(${px2vw(-0.5)});
+    transform: translateY(${px2vw(0.4)});
 `;
 const Dot = styled.hr`
     height: ${px2vw(5)};
@@ -117,8 +139,7 @@ const Question5 = () => {
     const questions = useSelector((state) => state.answer.questions)
     useEffect(() => {
         if (loading) {
-            dispatch(sendAnswer(questions))
-            navigate(`/end`)// simulate a delay
+            navigate(`/question6`)// simulate a delay
         }
     }, [loading]);
 
@@ -135,10 +156,18 @@ const Question5 = () => {
 
     }
 
+    const handleReturn = () => {
+        navigate("/question4");
+    }
 
     return (
         <Container>
             <Wrapper>
+                <Return icon="fa-solid fa-left-long" onClick={handleReturn} />
+                <Logo src={ImgLogo} />
+                <Question>
+                    Câu 5/6
+                </Question>
                 <Title>
                     Bạn vui lòng đánh giá {' '}
                     <Keyword>
@@ -162,7 +191,7 @@ const Question5 = () => {
                 </Label>
                 <Level>
                     <LevelTitle>
-                        CHƯA HÀI LÒNG
+                        KHÔNG GIỚI THIỆU
                     </LevelTitle>
                     <LevelLine>
                         <Dot />
@@ -170,7 +199,7 @@ const Question5 = () => {
                         <Dot />
                     </LevelLine>
                     <LevelTitle>
-                        HÀI LÒNG
+                        SẴN SÀNG GIỚI THIỆU
                     </LevelTitle>
                 </Level>
             </Wrapper>

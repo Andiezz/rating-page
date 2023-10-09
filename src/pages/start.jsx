@@ -4,8 +4,7 @@ import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation, sendUser, login } from "../redux/answerSlice";
-import { userLogin } from "../redux/authSlice";
+import { addLocation} from "../redux/answerSlice";
 
 
 const Container = styled.div`
@@ -100,7 +99,6 @@ color: gray;
 font-family: 'Quicksand', sans-serif;
 `;
 const Start = () => {
-    const success = useSelector((state) => state.auth.success)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);

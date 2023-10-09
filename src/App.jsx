@@ -9,6 +9,7 @@ import Question2 from "./pages/question2";
 import Question3 from "./pages/question3";
 import Question4 from "./pages/question4";
 import Question5 from "./pages/question5";
+import Question6 from "./pages/question6";
 import End from "./pages/end";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/question3" element={<Question3/>}/>
         <Route path="/question4" element={<Question4/>}/>
         <Route path="/question5" element={<Question5/>}/>
+        <Route path="/question6" element={<Question6/>}/>
         <Route path="/end" element={<End/>}/>
         </Routes>
     </Router>

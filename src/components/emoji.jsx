@@ -10,7 +10,7 @@ const Rating = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: ${px2vw(40)};
+    margin: ${px2vw(20)};
 `;
 
 const Content = styled.div`
@@ -140,6 +140,7 @@ const Emoji = (props) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const questions = useSelector((state) => state.answer.questions)
     
     useEffect(() => {
         if (loading) {

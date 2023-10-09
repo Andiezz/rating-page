@@ -7,7 +7,8 @@ import Emoji from '../components/emoji';
 import { px2vw } from '../responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addLocation } from '../redux/answerSlice';
+import { addAnswer, addLocation, removeAll, removeAnswer } from '../redux/answerSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const containAnimation = keyframes`${fadeIn}`;
 
 const Container = styled.div`
@@ -18,19 +19,21 @@ const Container = styled.div`
     height: 100vh;
     background-image: url(${ImgSrc});
     background-size: cover;
-    /* animation: 2s ${containAnimation}; */
+    animation: 1s ${containAnimation};
 `;
 
-const Button = styled.div`
+const Return = styled(FontAwesomeIcon)`
     position: absolute;
+    font-size: ${px2vw(30)};
     top: ${px2vw(10)};
     left: ${px2vw(10)};
     cursor: pointer;
 `;
 
 const Logo = styled.img`
-    height: ${px2vw(30)};
-    width: ${px2vw(45)};
+position: absolute;
+height: ${px2vw(30)};
+top: ${px2vw(20)};
 `;
 
 const Wrapper = styled.div`
@@ -42,15 +45,21 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
+const Question = styled.div`
+    font-size: ${px2vw(20)};
+    font-family: 'Quicksand', sans-serif;
+    margin: ${px2vw(20)};
+`;
+
 const Title = styled.div`
-    font-size: ${px2vw(30)};
+    font-size: ${px2vw(25)};
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
 `;
 
 const Keyword = styled.span`
-    font-size: ${px2vw(30)};
+    font-size: ${px2vw(25)};
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
@@ -62,27 +71,29 @@ const Question1 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleClick = () =>{
-        dispatch(addLocation(""));
+    const handleClick = () => {
+        dispatch(removeAll());
         navigate("/");
     }
     return (
         <Container>
-            <Button onClick={handleClick}>
-                <Logo src={ImgLogo} />
-            </Button>
+            <Return icon="fa-solid fa-left-long" onClick={handleClick}/>
             <Wrapper>
+                <Logo src={ImgLogo} />
+                <Question>
+                    Câu 1/6
+                </Question>
                 <Title>
-                    Bạn vui lòng đánh giá mức độ hài lòng của mình 
+                    Bạn vui lòng đánh giá mức độ hài lòng của mình
                 </Title>
                 <Title>
-                về sự hỗ trợ của {' '}
+                    về sự hỗ trợ của {' '}
                     <Keyword>
-                     Các bạn tư vấn bán hàng
+                        Các bạn tư vấn bán hàng
                     </Keyword>
                     :
                 </Title>
-                <Emoji index = {2} location ={location}/>
+                <Emoji index={2} location={location} />
             </Wrapper>
         </Container>
     )

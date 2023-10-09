@@ -38,11 +38,17 @@ export const answerSlice = createSlice({
       state.location = action.payload;
     },
     addAnswer: (state, action) => {
+      const question = state.questions.filter((question) => question.number !== action.payload.number);
+      state.questions = question;
       state.questions.push(action.payload);
     },
     removeAnswer: (state, action) => {
       state.questions = [];
     },
+    removeAll: (state, action) => {
+      state.questions = [];
+      state.location = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -60,5 +66,5 @@ export const answerSlice = createSlice({
   }
 });
 
-export const { addLocation, addAnswer, removeAnswer } = answerSlice.actions;
+export const { addLocation, addAnswer, removeAnswer, removeAll } = answerSlice.actions;
 export default answerSlice.reducer;
