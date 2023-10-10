@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { px2vw } from "../responsive";
-import { fadeIn } from "react-animations";
+import { fadeIn, fadeInUp } from "react-animations";
 import { useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import ImgLogo from '.././logo_tiin2.png';
@@ -35,12 +35,14 @@ margin-top: ${px2vw(40)};
 margin-bottom: ${px2vw(100)};
 `;
 
+const contentAnimation = keyframes`${fadeInUp}`;
+
 const Content = styled.div`
-flex: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation: 2s ${contentAnimation};
 `
 const Top = styled.p`
     font-family: Georgia, 'Times New Roman', Times, serif;

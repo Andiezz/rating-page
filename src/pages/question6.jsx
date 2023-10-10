@@ -20,7 +20,7 @@ const Container = styled.div`
     height: 100vh;
     background-image: url(${ImgSrc});
     background-size: cover;
-    /* animation: 2s ${containAnimation}; */
+    animation: 1s ${containAnimation};
 `;
 
 const Wrapper = styled.div`
