@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { slideInUp } from "react-animations";
-import { mobile } from "../responsive";
+import { mobile, px2vw } from "../responsive";
 import { fadeIn } from "react-animations";
 import { Link, useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
@@ -36,26 +36,25 @@ const Logo = styled.div`
  height: 100%;
  justify-content: center;
  align-items: center;
- font-size: 1in;
+ font-size: ${px2vw(50)};
  animation: 2s ${logoAnimation};
 `;
 
 const buttonAnimation = keyframes`${fadeIn}`;
 
 const Button = styled.button`
-margin-top: 112px;
+margin-top: ${px2vw(112)};
 box-sizing: border-box;
-border: 1.16446px solid #212121;
-border-radius: 85.0059px;
+border: ${px2vw(1)} solid #212121;
+border-radius: ${px2vw(85)};
 font-family: 'Inter';
 font-style: normal;
-font-weight: 400;
-font-size: 16.3025px;
-line-height: 20px;
+font-weight: ${px2vw(400)};
+font-size: ${px2vw(16)};
 /* identical to box height */
-letter-spacing: 0.05em;
 text-transform: uppercase;
-padding: 10px;
+padding: ${px2vw(10)};
+margin: ${px2vw(10)};
 color: #212121;
  cursor: pointer;
 /* &:active{
@@ -65,11 +64,14 @@ color: #212121;
 
 const Content = styled.div`
     display: flex;
-    width: 100%;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+    margin-top: ${px2vw(50)};
+
 `
 const Title = styled.a`
-    font-size: 40px;
+    font-size: ${px2vw(40)};
     word-wrap: break-word;
 `;
 
@@ -109,9 +111,10 @@ const Location = () => {
                     Bạn vui lòng chọn cơ sở đã trải nghiệm:
                 </Title>
                 <Content>
-                        {locations.map((location) => {
+                        {locations.map((location, index) => {
+                            index += 1;
                             return(
-                            <Button onClick={() => handleClick(location)} key={location}>
+                            <Button onClick={() => handleClick(location)} key={index}>
                                 {location}
                             </Button>
                         )})}
