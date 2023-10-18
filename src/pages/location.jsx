@@ -87,6 +87,7 @@ const Location = () => {
     }, [loading]);
 
     useEffect(() =>{
+        console.log(`${process.env.REACT_APP_SERVER_URL}/questions/locations`);
         fetch(`${process.env.REACT_APP_SERVER_URL}/questions/locations`, {
             method: "GET",
             headers: {
@@ -97,7 +98,7 @@ const Location = () => {
             .then((data) => {
                 setLocations(data.locations);
             });
-    });
+    },[]);
 
     const handleClick = (location) => {
         dispatch(addLocation(location))
