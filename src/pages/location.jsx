@@ -97,7 +97,7 @@ const Location = () => {
             .then((data) => {
                 setLocations(data.locations);
             });
-    },[]);
+    });
 
     const handleClick = (location) => {
         dispatch(addLocation(location))
