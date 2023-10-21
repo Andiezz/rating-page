@@ -107,6 +107,24 @@ const Start = () => {
     const dispatch = useDispatch();
     const location = useSelector((state) => state.answer.location)
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/health`, {
+                method: "GET",
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if(data.message === 'server ok !') {
+                        console.log(data.message);
+                        clearInterval(interval);
+                    }
+                });
+        }, 100);
+        return () => clearInterval(interval);
+    }, [])
 
     useEffect(() => {
         console.log(location)
