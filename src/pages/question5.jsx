@@ -9,16 +9,16 @@ import { addAnswer, addLocation, sendAnswer } from '../redux/answerSlice';
 import { px2vw } from '../responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const containAnimation = keyframes`${fadeIn}`;
+const containAnimation = keyframes`${ fadeIn }`;
 const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-image: url(${ImgSrc});
+    background-image: url(${ ImgSrc });
     background-size: cover;
-    animation: 1s ${containAnimation};
+    animation: 1s ${ containAnimation };
 `;
 
 const Wrapper = styled.div`
@@ -32,33 +32,33 @@ const Wrapper = styled.div`
 
 const Return = styled(FontAwesomeIcon)`
     position: absolute;
-    font-size: ${px2vw(30)};
-    top: ${px2vw(10)};
-    left: ${px2vw(10)};
+    font-size: ${ px2vw(30) };
+    top: ${ px2vw(10) };
+    left: ${ px2vw(10) };
     cursor: pointer;
 `;
 
 const Logo = styled.img`
 position: absolute;
-height: ${px2vw(30)};
-top: ${px2vw(20)};
+height: ${ px2vw(30) };
+top: ${ px2vw(20) };
 `;
 
 const Question = styled.div`
-    font-size: ${px2vw(20)};
+    font-size: ${ px2vw(20) };
     font-family: 'Quicksand', sans-serif;
-    margin: ${px2vw(20)};
+    margin: ${ px2vw(20) };
 `;
 
 const Title = styled.div`
-    font-size: ${px2vw(25)};
+    font-size: ${ px2vw(25) };
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
 `;
 
 const Keyword = styled.span`
-    font-size: ${px2vw(25)};
+    font-size: ${ px2vw(25) };
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
@@ -75,16 +75,16 @@ const Answer1 = styled.button`
     align-items: center;
     justify-content: center;
     background: transparent;
-    height: ${px2vw(65)};
-    width: ${px2vw(65)};
-    margin: ${px2vw(40)} ${px2vw(10)};
+    height: ${ px2vw(65) };
+    width: ${ px2vw(65) };
+    margin: ${ px2vw(40) } ${ px2vw(10) };
     border: 1px solid black;
     border-radius: 50%;
     cursor: pointer;
 
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
-    font-size: ${px2vw(32)};
+    font-size: ${ px2vw(32) };
     color: #212121;
 
     &:active {
@@ -104,27 +104,27 @@ display: flex;
 justify-content: center;
 align-items: center;
 font-family: 'Quicksand', sans-serif;
-font-size: ${px2vw(15)};
+font-size: ${ px2vw(15) };
 `
 const LevelLine = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60%;
-    margin: 0 ${px2vw(10)};
-    transform: translateY(${px2vw(2)});
+    margin: 0 ${ px2vw(10) };
+    transform: translateY(${ px2vw(2) });
 `;
 
 const Line = styled.hr`
-    height: ${px2vw(1)};
+    height: ${ px2vw(1) };
     width: 100%;
     border: 0;
     background: black;
-    transform: translateY(${px2vw(0.4)});
+    transform: translateY(${ px2vw(0.4) });
 `;
 const Dot = styled.hr`
-    height: ${px2vw(5)};
-    width: ${px2vw(5)};
+    height: ${ px2vw(5) };
+    width: ${ px2vw(5) };
     background: black;
     border: 0;
     transform: rotate(45deg);
@@ -169,11 +169,11 @@ const Question5 = () => {
                     Câu 5/6
                 </Question>
                 <Title>
-                    Bạn vui lòng đánh giá {' '}
+                    Bạn cho biết {' '}
                     <Keyword>
-                        mức độ hài lòng
+                        mức độ sẵn sàng giới thiệu Tiin Store
                     </Keyword>
-                    {' '} trên thang điểm từ 1-10?
+                    {' '} với bạn bè, đồng nghiệp của bạn ạ?
                 </Title>
                 <Label>
                     {[...Array(10)].map((key, index) => {
