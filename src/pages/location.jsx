@@ -89,7 +89,6 @@ const Location = () => {
     useEffect(() =>{
         console.log(`${process.env.REACT_APP_SERVER_URL}/questions/locations`);
         fetch(`${process.env.REACT_APP_SERVER_URL}/questions/locations`, {
-            mode: 'no-cors',
             method: "GET",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
