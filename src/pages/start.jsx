@@ -120,11 +120,9 @@ const Start = () => {
                 .then((data) => {
                     if(data.message === 'server ok !') {
                         console.log(data.message);
-                        clearInterval(interval);
                     }
                 });
-        }, 100);
-        return () => clearInterval(interval);
+        }, 600000);
     }, [])
 
     useEffect(() => {
