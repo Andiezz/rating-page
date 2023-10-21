@@ -11,6 +11,7 @@ export const fetchAnswer = createAsyncThunk(
 
 export const sendAnswer = createAsyncThunk("create/sendAnswer", async (data) => {
   return fetch(`${process.env.REACT_APP_SERVER_URL}/questions/create`, {
+    mode: 'no-cors',
     method: "POST",
     headers: {
       'Content-type': 'application/json; charset=UTF-8',

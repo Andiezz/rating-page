@@ -110,6 +110,7 @@ const Start = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetch(`${process.env.REACT_APP_SERVER_URL}/health`, {
+                mode: 'no-cors',
                 method: "GET",
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -130,6 +131,7 @@ const Start = () => {
     }, [location])
     const handleClick = () => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
+            mode: 'no-cors',
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
