@@ -116,12 +116,12 @@ const round = keyframes`
 
 const Loader = styled.span`
   color: black;
-  font-size: 40px;
+  font-size: ${px2vw(40)};
   width: 1em;
   height: 1em;
   border-radius: 50%;
   transform: translateZ(0);
-  margin: 20px;
+  margin: ${px2vw(20)};
   animation: ${mltShdSpin} 1.7s infinite ease, ${round} 1.7s infinite ease;
 `
 
@@ -131,6 +131,7 @@ const Location = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [locations, setLocations] = useState([]);
+    const [apiCall, setApiCall] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
@@ -147,6 +148,7 @@ const Location = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                setApiCall(true);
                 setLocations(data.locations);
             });
     }, []);
@@ -159,13 +161,13 @@ const Location = () => {
     return (
         <Container>
             <Wrapper>
-            {!locations ?
+                {!apiCall ?
                     <>
                         <Loader />
                         <Title>
-                            Xin vui lòng chờ đợi 
+                            Xin vui lòng chờ đợi
                         </Title>
-                    </> 
+                    </>
                     :
                     <>
                         <Title>
