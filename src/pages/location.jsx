@@ -1,14 +1,14 @@
 import styled, { keyframes } from "styled-components";
 import { slideInUp } from "react-animations";
-import { mobile, px2vw } from "../responsive";
+import { px2vw } from "../responsive";
 import { fadeIn } from "react-animations";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImgSrc from '.././bg_tiin.png';
 import { useDispatch } from "react-redux";
 import { addLocation } from "../redux/answerSlice";
 import { useEffect, useState } from "react";
 
-const containAnimation = keyframes`${fadeIn}`;
+const containAnimation = keyframes`${ fadeIn }`;
 
 const Container = styled.div`
     display: flex;
@@ -16,9 +16,9 @@ const Container = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-image: url(${ImgSrc});
+    background-image: url(${ ImgSrc });
     background-size: cover;
-    animation: 2s ${containAnimation};
+    animation: 2s ${ containAnimation };
 `;
 
 
@@ -29,32 +29,32 @@ align-items: center;
 flex-direction: column;
 `;
 
-const logoAnimation = keyframes`${slideInUp}`;
+const logoAnimation = keyframes`${ slideInUp }`;
 
 const Logo = styled.div`
- display: flex;
- height: 100%;
- justify-content: center;
- align-items: center;
- font-size: ${px2vw(50)};
- animation: 2s ${logoAnimation};
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: ${ px2vw(50) };
+    animation: 2s ${ logoAnimation };
 `;
 
-const buttonAnimation = keyframes`${fadeIn}`;
+const buttonAnimation = keyframes`${ fadeIn }`;
 
 const Button = styled.button`
-margin-top: ${px2vw(112)};
+margin-top: ${ px2vw(112) };
 box-sizing: border-box;
-border: ${px2vw(1)} solid #212121;
-border-radius: ${px2vw(85)};
+border: ${ px2vw(1) } solid #212121;
+border-radius: ${ px2vw(85) };
 font-family: 'Inter';
 font-style: normal;
-font-weight: ${px2vw(400)};
-font-size: ${px2vw(16)};
+font-weight: ${ px2vw(400) };
+font-size: ${ px2vw(16) };
 /* identical to box height */
 text-transform: uppercase;
-padding: ${px2vw(10)};
-margin: ${px2vw(10)};
+padding: ${ px2vw(10) };
+margin: ${ px2vw(10) };
 color: #212121;
  cursor: pointer;
 /* &:active{
@@ -67,11 +67,11 @@ const Content = styled.div`
     flex-wrap: wrap;
     width: 80%;
     justify-content: center;
-    margin-top: ${px2vw(50)};
+    margin-top: ${ px2vw(50) };
 
 `
 const Title = styled.a`
-    font-size: ${px2vw(40)};
+    font-size: ${ px2vw(40) };
     word-wrap: break-word;
 `;
 
@@ -116,22 +116,33 @@ const round = keyframes`
 
 const Loader = styled.span`
   color: black;
-  font-size: ${px2vw(40)};
+  font-size: ${ px2vw(40) };
   width: 1em;
   height: 1em;
   border-radius: 50%;
   transform: translateZ(0);
-  margin: ${px2vw(20)};
-  animation: ${mltShdSpin} 1.7s infinite ease, ${round} 1.7s infinite ease;
+  margin: ${ px2vw(20) };
+  animation: ${ mltShdSpin } 1.7s infinite ease, ${ round } 1.7s infinite ease;
 `
 
-
+const locations = [
+    '225 Chùa Bộc',
+    'Phạm Ngọc Thạch',
+    'Đặng Văn Ngữ',
+    '128 Cầu Giấy',
+    '261 Cầu Giấy',
+    '190 Bà Triệu',
+    '214B Nguyễn Trãi',
+    'Tiin online',
+    '140 Võ Văn Ngân-SG',
+    '260 Quang Trung-SG'
+]
 
 const Location = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [locations, setLocations] = useState([]);
-    const [apiCall, setApiCall] = useState(false);
+    // const [locations, setLocations] = useState([]);
+    // const [apiCall, setApiCall] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
@@ -139,36 +150,35 @@ const Location = () => {
         }
     }, [loading]);
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/questions/locations`, {
-            method: "GET",
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setApiCall(true);
-                setLocations(data.locations);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch(`${ process.env.REACT_APP_SERVER_URL }/questions/locations`, {
+    //         method: "GET",
+    //         headers: {
+    //             'Content-type': 'application/json; charset=UTF-8',
+    //         },
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setApiCall(true);
+    //             setLocations(data.locations);
+    //         });
+    // }, []);
 
     const handleClick = (location) => {
         dispatch(addLocation(location))
         setLoading(true);
-        console.log(location)
     }
     return (
         <Container>
             <Wrapper>
-                {!apiCall ?
+                {/* {!apiCall ?
                     <>
                         <Loader />
                         <Title>
                             Xin vui lòng chờ đợi
                         </Title>
                     </>
-                    :
+                    : */}
                     <>
                         <Title>
                             Bạn vui lòng chọn cơ sở đã trải nghiệm:
@@ -184,7 +194,6 @@ const Location = () => {
                             })}
                         </Content>
                     </>
-                }
             </Wrapper>
         </Container>
     );
