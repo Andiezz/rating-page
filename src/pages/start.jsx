@@ -107,7 +107,7 @@ const accounts = [
     },
     {
         username: 'adminPNT',
-        password: 'Abc@12345',
+        password: 'Tiin@123',
         location: 'Phạm Ngọc Thạch'
     },
     {
