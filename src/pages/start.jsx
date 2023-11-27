@@ -98,6 +98,60 @@ font-size: 20px;
 color: gray;
 font-family: 'Quicksand', sans-serif;
 `;
+
+const accounts = [
+    {
+        username: 'admin225CB',
+        password: 'Tiin@123',
+        location: '225 Chùa Bộc'
+    },
+    {
+        username: 'adminPNT',
+        password: 'Abc@12345',
+        location: 'Phạm Ngọc Thạch'
+    },
+    {
+        username: 'adminDVN',
+        password: 'Tiin@123',
+        location: 'Đặng Văn Ngữ'
+    },
+    {
+        username: 'admin128CG',
+        password: 'Tiin@123',
+        location: '128 Cầu Giấy'
+    },
+    {
+        username: 'admin261CG',
+        password: 'Tiin@123',
+        location: '261 Cầu Giấy'
+    },
+    {
+        username: 'admin190BT',
+        password: 'Tiin@123',
+        location: '190 Bà Triệu'
+    },
+    {
+        username: 'admin214BNT',
+        password: 'Tiin@123',
+        location: '214B Nguyễn Trãi'
+    },
+    {
+        username: 'adminonline',
+        password: 'Tiin@123',
+        location: 'Tiin online'
+    },
+    {
+        username: 'admin140VVN',
+        password: 'Tiin@123',
+        location: '140 Võ Văn Ngân-SG'
+    },
+    {
+        username: 'admin260QT',
+        password: 'Tiin@123',
+        location: '260 Quang Trung-SG'
+    }
+];
+
 const Start = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -128,25 +182,16 @@ const Start = () => {
         console.log(location)
         if(location) navigate("/question1")
     }, [location])
+
     const handleClick = () => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            }
-            )
+        const userExisted = accounts.find(a => {
+            return a.username === username && a.password === password;
         })
-            .then((res) => res.json())
-            .then((data) => {
-                dispatch(addLocation(data.location));
-                if(!data.location) setError(true)
-                console.log(data)
-            });
+        if (!userExisted) {
+            setError(true);
+        } else {
+            dispatch(addLocation(userExisted.location));
+        }
     }
 
 
