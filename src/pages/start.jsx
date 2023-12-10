@@ -162,23 +162,6 @@ const Start = () => {
     const location = useSelector((state) => state.answer.location)
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            fetch(`${process.env.REACT_APP_SERVER_URL}/health`, {
-                method: "GET",
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                }
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if(data.message === 'server ok !') {
-                        console.log(data.message);
-                    }
-                });
-        }, 600000);
-    }, [])
-
-    useEffect(() => {
         console.log(location)
         if(location) navigate("/question1")
     }, [location])
