@@ -38,9 +38,12 @@ export const answerSlice = createSlice({
       state.location = action.payload;
     },
     addAnswer: (state, action) => {
-      const question = state.questions.filter((question) => question.number !== action.payload.number);
-      state.questions = question;
-      state.questions.push(action.payload);
+      if(action.payload.number !== 1){ 
+        const question = state.questions.filter((question) => question.number !== action.payload.number);
+        state.questions = question;
+        console.log("push")
+      }
+        state.questions.push(action.payload);
     },
     removeAnswer: (state, action) => {
       state.questions = [];
