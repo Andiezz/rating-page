@@ -38,11 +38,8 @@ export const answerSlice = createSlice({
       state.location = action.payload;
     },
     addAnswer: (state, action) => {
-      if(state.questions[0]){ 
-        const question = state.questions.filter((question) => question.number !== action.payload.number);
+        const question = state.questions?.filter((question) => question.number !== action.payload.number);
         state.questions = question;
-        console.log("push")
-      }
         state.questions.push(action.payload);
     },
     removeAnswer: (state, action) => {
