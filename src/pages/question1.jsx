@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { keyframes } from "styled-components";
 import { fadeIn } from "react-animations";
 import ImgSrc from '.././bg_tiin.png';
@@ -70,6 +70,10 @@ const Question1 = () => {
     const location = useSelector((state) => state.answer.location);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        dispatch(removeAnswer());
+    }, [])
 
     const handleClick = () => {
         dispatch(removeAll());

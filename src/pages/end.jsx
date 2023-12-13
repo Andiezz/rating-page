@@ -57,14 +57,15 @@ const Bot = styled.p`
     font-style: italic;
 `
 const End = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
+
     useEffect(() => {
         setTimeout(() => {
-            dispatch(removeAnswer());
             navigate(`/question1`)
         }, 2000);
     }, []);
+
     return (
         <Container>
             <Wrapper>
