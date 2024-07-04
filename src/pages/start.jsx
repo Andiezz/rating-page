@@ -149,6 +149,16 @@ const accounts = [
         username: 'admin260QT',
         password: 'Tiin@123',
         location: '260 Quang Trung-SG'
+    },
+    {
+        username: 'admin151LH',
+        password: 'Tiin@123',
+        location: '151 Lê Hoàn'
+    },
+    {
+        username: 'adminBacNinh',
+        password: 'Tiin@123',
+        location: 'Bắc Ninh'
     }
 ];
 

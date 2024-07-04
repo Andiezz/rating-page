@@ -135,7 +135,9 @@ const locations = [
     '214B Nguyễn Trãi',
     'Tiin online',
     '140 Võ Văn Ngân-SG',
-    '260 Quang Trung-SG'
+    '260 Quang Trung-SG',
+    '151 Lê Hoàn',
+    'Bắc Ninh'
 ]
 
 const Location = () => {
